@@ -48,3 +48,56 @@ SELECT designation, (1000*puht)/(qte*poidspiece) AS "Prix au kilo", puht AS "Pri
 FROM produits
 WHERE descriptif = 'P'
 ORDER BY "Prix au kilo"
+
+#9
+SELECT designation,
+CASE WHEN descriptif = 'P'
+THEN poidspiece*qte
+ELSE qte
+END AS "Poids"
+FROM produits
+
+#10
+SELECT SUM(CASE WHEN descriptif = 'P'
+THEN poidspiece*qte*stock
+ELSE qte*stock
+END)/1000 AS "Poids du stock"
+FROM produits
+
+#11
+SELECT SUM(puht*stock) AS "Prix du stock"
+FROM produits
+
+#12 marche pas
+SELECT SUM(CASE WHEN descriptif = 'P'
+THEN poidspiece*qte*stock
+ELSE qte*stock
+END)/1000 AS "Poids du stock",
+SUM(puht*stock) AS "Prix du stock",
+SUM(puht*stock)/(SUM(CASE WHEN descriptif = 'P'
+THEN poidspiece*qte*stock
+ELSE qte*stock
+END)/1000) AS "Prix moyen"
+FROM produits
+
+#13
+SELECT numcmde
+FROM lignes_commande
+INNER JOIN produits on lignes_commande.ref = produits.ref
+WHERE designation = 'FRAISE TSOIN-TSOIN'
+INTERSECT
+SELECT numcmde
+FROM lignes_commande
+INNER JOIN produits on lignes_commande.ref = produits.ref
+WHERE designation = 'COLA CITRIQUE'
+
+#14
+SELECT numcmde
+FROM lignes_commande
+INNER JOIN produits on lignes_commande.ref = produits.ref
+WHERE designation = 'COLA CITRIQUE'
+EXCEPT
+SELECT numcmde
+FROM lignes_commande
+INNER JOIN produits on lignes_commande.ref = produits.ref
+WHERE designation = 'FRAISE TSOIN-TSOIN'
