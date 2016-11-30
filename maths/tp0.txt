@@ -1,0 +1,81 @@
+**********
+**
+**     SCILAB TP0 : Introduction
+**
+*********
+
+
+Exercice 1 :
+0.2
+0.5
+3.4
+0.04
+1.104D+33
+1
+1.6931472
+*********************
+
+Exercice 2 :
+d=17
+x1=0.5615528
+x2=-3.5615528
+*********************
+
+Exercice 3 :
+0.00000002845904490 ≈ 2.846D-08 ≈ 0
+on donne une valeur approximative de e
+0.00000000000000044 ≈ 4.441D-16 ≈ 0
+effet racine carrée
+
+0.00000000000000044 ≈ 4.441D-16 ≈ 0
+effet racine carrée
+
+l'ordi n'aime pas trop les virgules
+*********************
+
+Exercice 4 :
+F
+T
+T il simplifie
+*********************
+
+Exercice 5 :
+T
+F
+T
+*********************
+
+Exercice 6 :
+P
+0
+N+P il a du mal avec les nombres trop grands
+l'ordi ce n'est pas fait pour calculer
+*********************
+
+Exercice 7 :
+-->function y=f(x)
+-->y=x^2-4*x+7
+-->endfunction
+
+-->function [P,S]=disque(R)
+-->S=%pi*R^2
+-->P=2*R*%pi
+-->endfunction
+
+disque(4) donne P
+[P,S]=disque(4) donne S et P
+*********************
+
+
+
+Exercice 8 :
+N1=19
+N2=15
+N3=11
+M=(N1+N2+N3)/3
+
+
+function M=moyenne(N1, N2, N3)
+    M=(N1+N2+N3)/3
+endfunction
+*********************
