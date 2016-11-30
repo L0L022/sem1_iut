@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="tp6.css">
+    <title>TP 6</title>
+  </head>
+  <body>
+    <form class="" action="http://www.stravingo.fr/iut/traitement.php" method="post">
+      <fieldset>
+        <legend>Identité</legend>
+        <label class="right_label">Nom :</label>
+        <input type="text" name="nom" size="20" maxlength="50" required autocomplete="on" autofocus> <br/>
+        <label class="right_label">Prénom :</label>
+        <input type="text" name="prenom" size="20" maxlength="50" required autocomplete="on"> <br/>
+        <label class="right_label">Age :</label>
+        <input type="number" name="age" min="0" max="140"> <br/>
+        <label class="right_label">Nationalité :</label>
+        <select name="pays">
+          <option value="allemagne">Allemagne</option>
+          <option value="france">France</option>
+          <option value="espagne">Espagne</option>
+          <option value="italie">Italie</option>
+          <option value="autre">Autre</option>
+        </select>
+        <br/>
+      </fieldset>
+      <fieldset>
+        <legend>Informations personnelles</legend>
+        <label class="right_label">Mot de passe :</label>
+        <input type="password" name="motdepasse" size="10" maxlength="10"> <br/>
+        <label class="right_label">Email :</label>
+        <input type="email" name="email" size="40" maxlength="80" required autocomplete="on"> <br/>
+        <input type="radio" name="os" value="windows"/> <label>Windows</label><br/>
+        <input type="radio" name="os" value="linux"/> <label>Linux</label><br/>
+        <input type="radio" name="os" value="macos"/> <label>MacOS</label><br/>
+        <input type="radio" name="os" value="autre"/> <label>Autre</label><br/>
+        <label>Description :</label> <br/>
+        <textarea name="description" rows="5" cols="50" maxlength="500" spellcheck="true"></textarea> <br/>
+        <label class="right_label">Couleur :</label>
+        <input type="color" name="fav_couleur" value="#ffffff"> <br/>
+        <label class="right_label">Fichier musique :</label>
+        <input type="file" name="musique_fichier" accept="audio/*"> <br/>
+        <input type="checkbox" name="pub"/> <label>Tu veux des pubs par mail ?</label> <br/>
+      </fieldset>
+      <div class="center">
+        <input type="reset" value="Effacer"/>
+        <input type="submit" value="Envoyer"/>
+      </div>
+    </form>
+  </body>
+</html>

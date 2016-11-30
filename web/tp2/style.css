@@ -1,0 +1,89 @@
+* {
+	font-family: arial;
+}
+
+body {
+	width: 70%;
+	margin-left: 15%;
+	background-image: url("gradient.png");
+	background-repeat: repeat-x;
+	background-attachment: fixed;
+}
+
+h1 {
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	color: #204a87;
+}
+
+h2 {
+	text-align: right;
+	font-size: 1.5em;
+	font-weight: bold;
+	font-style: italic;
+	color: #729fcf;
+}
+
+ul {
+	list-style-type: square;
+}
+
+a, a:visited {
+	color: #f57900;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.titre_colone {
+	text-align: center;
+	font-weight: bold;
+}
+
+.module {
+	text-align: center;
+}
+
+.ue {
+	text-align: center;
+	font-weight: bold;
+	background-color: #edd400;
+}
+
+#tab_modules {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#tab_modules, #tab_modules tr, #tab_modules td {
+	border: 2px solid black;
+}
+
+td.semestre {
+	font-family: arial;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+	color: #ffffff;
+	background-color: #4e9a06;
+}
+
+div.motivation {
+	width: 300px;
+	border: 10px;
+	padding: 30px;
+	color: #888a85;
+	text-align: justify;
+	text-indent: 30px;
+	margin: 0 auto;
+}
+
+div.motivation p::first-letter {
+	font-weight: bold;
+	font-size: 2em;
+	color: #cc0000;
+}

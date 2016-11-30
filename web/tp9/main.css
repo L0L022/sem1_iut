@@ -1,0 +1,21 @@
+.jaune {
+  color: gold;
+  text-shadow: 0px 0px 2px #000000;0px 0px 2px #000000;
+}
+
+.blanc {
+  color: white;
+  text-shadow: 0px 0px 2px #000000;0px 0px 2px #000000;
+}
+
+.jumbotron-image {
+  background-image: url(background.jpg);
+}
+
+.zoom {
+  transition: transform 0.2s;
+}
+
+.zoom:hover {
+  transform: scale(1.5);
+}
