@@ -1,0 +1,52 @@
+.carre {
+    background-color: lightblue;
+    width: 40%;
+    height: 35%;
+}
+
+.carre:hover {
+  background-color: red;
+}
+
+.carre-1-1 {
+  margin-top: 8%;
+  margin-right: 2%;
+  margin-left: 8%;
+  float: left;
+}
+
+.carre-2-1 {
+  margin-top: 8%;
+  margin-right: 8%;
+  margin-left: 2%;
+  float: right;
+}
+
+.carre-1-2 {
+  margin-top: 2.5%;
+  margin-right: 2%;
+  margin-left: 8%;
+  float: left;
+}
+
+.carre-2-2 {
+  margin-top: 2.5%;
+  margin-right: 8%;
+  margin-left: 2%;
+  float: right;
+}
+
+.cache {
+  display: none;
+}
+
+.non-cache {
+}
+
+.carre:hover .cache {
+  display: inline;
+}
+
+.carre:hover .non-cache {
+  display: none;
+}
