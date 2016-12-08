@@ -5,7 +5,8 @@ using namespace std;
 const size_t L = 5, C = 5;
 
 //mieux, normalement
-bool cherche_mot_dans_mot(const char mot_dans[], const char mot_quoi[], const size_t taille_mot_dans, const size_t taille_mot_quoi) {
+bool cherche_mot_dans_mot(const char mot_dans[], const char mot_quoi[],
+                          const size_t taille_mot_dans, const size_t taille_mot_quoi) {
   for(size_t i = 0; i<=taille_mot_dans-taille_mot_quoi; ++i) {
     bool pareil = true;
     for(size_t j = 0; j<taille_mot_quoi; ++j) {
@@ -21,7 +22,7 @@ bool cherche_mot_dans_mot(const char mot_dans[], const char mot_quoi[], const si
 
 bool cherche_mot_dans_grille(const char grille[][C], const char mot[]) {
   size_t taille_mot = 0;
-  for (size_t i = 0; mot[i] != '\0'; ++i) ++taille_mot;
+  for (; mot[taille_mot] != '\0'; ++taille_mot);
 
   //test horizontal
   for(size_t ligne = 0; ligne < L and taille_mot<=L; ++ligne) {
@@ -42,9 +43,7 @@ bool cherche_mot_dans_grille(const char grille[][C], const char mot[]) {
 //bof bof
 bool cherche_mot_pas_beau(const char grille[][C], const char mot[]) {
   size_t taille = 0;
-  for (size_t i = 0; mot[i] != '\0'; ++i) {
-    ++taille;
-  }
+  for (; mot[taille] != '\0'; ++taille);
 
   if (taille <= C) {
     //test vertical

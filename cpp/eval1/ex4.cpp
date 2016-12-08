@@ -3,19 +3,13 @@
 
 using namespace std;
 
-struct sPoint {
+typedef struct {
   float x, y;
-};
-typedef struct sPoint Point;
+} Point;
 
-/*typedef struct {
-  float x, y;
-} sPoint;*/
-
-struct sSegment {
+typedef struct {
   Point p1, p2;
-};
-typedef struct sSegment Segment;
+} Segment;
 
 float distance(const Point& p1, const Point& p2) {
   return sqrt(pow((p1.x-p2.x),2)+pow((p1.y-p2.y),2));

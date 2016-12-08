@@ -2,16 +2,18 @@
 
 using namespace std;
 
-void inverse(float& n1, float& n2) {
-  float tmp = n1;
-  n1 = n2;
-  n2 = tmp;
+void ordonne(float& petit, float& grand) {
+  if(petit>grand) {
+    float tmp = petit;
+    petit = grand;
+    grand = tmp;
+  }
 }
 
 void ordonne3(float& a, float& b, float& c) {
-  if (a > b) inverse(a,b);
-  if (a > c) inverse(a, c);
-  if (b > c) inverse(b, c);
+  ordonne(a, b);
+  ordonne(a, c);
+  ordonne(b, c);
 }
 
 int main() {
