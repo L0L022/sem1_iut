@@ -5,11 +5,7 @@ using namespace std;
 const size_t L = 5, C = 5;
 
 //mieux, normalement
-bool cherche_mot_dans_mot(const char mot_dans[], const char mot_quoi[]) {
-  size_t taille_mot_dans = 0, taille_mot_quoi = 0;
-  for (size_t i = 0; mot_dans[i] != '\0'; ++i) ++taille_mot_dans;
-  for (size_t i = 0; mot_quoi[i] != '\0'; ++i) ++taille_mot_quoi;
-
+bool cherche_mot_dans_mot(const char mot_dans[], const char mot_quoi[], const size_t taille_mot_dans, const size_t taille_mot_quoi) {
   for(size_t i = 0; i<=taille_mot_dans-taille_mot_quoi; ++i) {
     bool pareil = true;
     for(size_t j = 0; j<taille_mot_quoi; ++j) {
@@ -31,14 +27,14 @@ bool cherche_mot_dans_grille(const char grille[][C], const char mot[]) {
   for(size_t ligne = 0; ligne < L and taille_mot<=L; ++ligne) {
     char mot_ligne[C];
     for(size_t i = 0; i<C; ++i) mot_ligne[i] = grille[ligne][i];
-    if(cherche_mot_dans_mot(mot_ligne, mot)) return true;
+    if(cherche_mot_dans_mot(mot_ligne, mot, C, taille_mot)) return true;
   }
 
   //test vertical
   for(size_t colonne = 0; colonne < C and taille_mot<=C; ++colonne) {
     char mot_colonne[L];
     for(size_t i = 0; i<L; ++i) mot_colonne[i] = grille[i][colonne];
-    if(cherche_mot_dans_mot(mot_colonne, mot)) return true;
+    if(cherche_mot_dans_mot(mot_colonne, mot, L, taille_mot)) return true;
   }
   return false;
 }
