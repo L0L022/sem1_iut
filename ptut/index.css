@@ -1,0 +1,75 @@
+body {
+  background-color: rgb(38, 38, 38);
+}
+
+.carre {
+  background-image: linear-gradient(60deg, grey, black);
+  width: 42%;
+  height: 35%;
+  position: fixed;
+}
+
+.carre:hover {
+  background: #729ebf;
+}
+
+.carre-1-1 {
+  top: 10%;
+  left: 5%;
+}
+
+.carre-2-1 {
+  top: 10%;
+  right: 5%;
+}
+
+.carre-1-2 {
+  bottom: 10%;
+  left: 5%;
+}
+
+.carre-2-2 {
+  bottom: 10%;
+  right: 5%;
+}
+
+.cache {
+  display: none;
+}
+
+.carre:hover .cache {
+  display: inline;
+}
+
+.non-cache {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carre:hover .non-cache {
+  display: none;
+}
+
+.menu {
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu a {
+  display: block;
+  text-decoration: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
