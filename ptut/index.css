@@ -34,11 +34,14 @@ body {
 }
 
 .cache {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .carre:hover .cache {
-  display: inline;
+  visibility: visible;
+  opacity: 1;
 }
 
 .non-cache {
@@ -46,10 +49,11 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  transition: 1s ease-out;
 }
 
 .carre:hover .non-cache {
-  display: none;
+  top: 10%;
 }
 
 .menu {
@@ -57,9 +61,10 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
-  position: relative;
+  position: absolute;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .menu a {
