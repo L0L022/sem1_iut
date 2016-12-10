@@ -4,14 +4,17 @@ body {
 }
 
 .carre {
-  background-color: #14577a;
+  background: linear-gradient(rgba(5, 205, 208, 1), rgba(6, 152, 154, 0.8), rgba(5, 205, 208, 1));
   width: 42%;
   height: 35%;
   position: fixed;
+  border-style: solid;
+  border-color: #00fcff;
+  color: white;
 }
 
 .carre:hover {
-  background: #0193eb;
+  background: rgba(5, 205, 208, 1);
 }
 
 .carre-1-1 {
@@ -30,7 +33,6 @@ body {
 }
 
 .carre-2-2 {
-  background-color: #14577a;
   bottom: 10%;
   right: 5%;
 }
@@ -38,7 +40,7 @@ body {
 .cache {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 1s ease-in, opacity 1.5s ease-out;
 }
 
 .carre:hover .cache {
@@ -51,7 +53,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition: 1s ease-out;
+  transition: 0.7s ease-out;
 }
 
 .carre:hover .non-cache {
@@ -67,6 +69,12 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.menu li {
+  width: 200%;
+  transform: translate(-25%, 0);
 }
 
 .menu a {
@@ -74,8 +82,10 @@ body {
   text-decoration: none;
   color: white;
   background-color: #119119;
-  padding: 10px 120px;
+  text-align: center;
   margin: 2px;
+  border-style: double;
+  border-color: #f9d451;
 }
 
 .menu a:hover {
@@ -87,5 +97,7 @@ footer {
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0%);
-  color: #02ad05;
+  color: white;
+  text-shadow: 0 0 30px black;
+  font-weight: bolder;
 }
