@@ -1,16 +1,17 @@
 body {
-  background-color: rgb(38, 38, 38);
+  background: url("http://www.dwrl.utexas.edu/wp-content/uploads/2015/09/Europe-and-Asia-Fields-1.png") no-repeat center fixed;
+  background-size: cover;
 }
 
 .carre {
-  background-image: linear-gradient(60deg, grey, black);
+  background-color: #14577a;
   width: 42%;
   height: 35%;
   position: fixed;
 }
 
 .carre:hover {
-  background: #729ebf;
+  background: #0193eb;
 }
 
 .carre-1-1 {
@@ -29,6 +30,7 @@ body {
 }
 
 .carre-2-2 {
+  background-color: #14577a;
   bottom: 10%;
   right: 5%;
 }
@@ -70,6 +72,14 @@ body {
 .menu a {
   display: block;
   text-decoration: none;
+  color: white;
+  background-color: #119119;
+  padding: 10px 120px;
+  margin: 2px;
+}
+
+.menu a:hover {
+  background-color: #02ad05;
 }
 
 footer {
@@ -77,4 +87,5 @@ footer {
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0%);
+  color: #02ad05;
 }
