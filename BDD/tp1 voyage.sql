@@ -47,19 +47,14 @@ WHERE paysarr = 'MAROC'
 -- sous requetes et operateurs ensemblistes
 
 -- 1
-SELECT V1.idv, villearr, tarif
-FROM tp1_bd_voyage.voyage V1
-INNER JOIN tp1_bd_voyage.planning P ON V1.idv = P.idv
-GROUP BY V1.idv, villearr, tarif
-HAVING tarif >= ALL(
-  SELECT tarif
-  FROM tp1_bd_voyage.voyage V2
-  INNER JOIN tp1_bd_voyage.planning P ON V2.idv = P.idv
-  WHERE V1.idv = V2.idv
+SELECT V.idv, villearr
+FROM tp1_bd_voyage.voyage V
+INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
+WHERE tarif = (
+  SELECT MIN(tarif)
+  FROM tp1_bd_voyage.planning
 )
-ORDER BY tarif DESC
---ou
-
+-- ou
 
 -- 2
 SELECT villearr, tarif
@@ -116,6 +111,7 @@ SELECT V.idv, V.villedep, V.paysarr
 FROM tp1_bd_voyage.voyage V
 INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
 INNER JOIN tp1_bd_voyage.reservation R ON P.idv = R.idv AND P.datedep = R.datedep
+ORDER BY V.idv
 -- ou
 SELECT V.idv, V.villedep, V.paysarr
 FROM tp1_bd_voyage.voyage V
@@ -125,6 +121,7 @@ WHERE idv NOT IN (
   INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
   INNER JOIN tp1_bd_voyage.reservation R ON P.idv = R.idv AND P.datedep = R.datedep
 )
+ORDER BY V.idv
 -- ou
 SELECT V.idv, V.villedep, V.paysarr
 FROM tp1_bd_voyage.voyage V
@@ -134,6 +131,7 @@ WHERE idv <> ALL (
   INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
   INNER JOIN tp1_bd_voyage.reservation R ON P.idv = R.idv AND P.datedep = R.datedep
 )
+ORDER BY V.idv
 
 -- 6
 SELECT O.libelle
@@ -195,3 +193,57 @@ WHERE C.numcl NOT IN (
   INNER JOIN tp1_bd_voyage.reservation R ON C.numcl = R.numcl
 )
 -- ou
+
+-- 9
+SELECT V.villearr, V.paysarr
+FROM tp1_bd_voyage.voyage V
+EXCEPT
+SELECT V.villearr, V.paysarr
+FROM tp1_bd_voyage.voyage V
+WHERE villedep = 'MARSEILLE'
+
+-- 10
+SELECT *
+FROM tp1_bd_voyage.optionv
+EXCEPT
+SELECT O.code, O.libelle
+FROM tp1_bd_voyage.optionv O
+INNER JOIN tp1_bd_voyage.carac C ON O.code = C.code
+INNER JOIN tp1_bd_voyage.voyage V ON C.idv = V.idv
+WHERE V.paysarr = 'CHYPRE'
+
+-- 11
+SELECT DISTINCT hotel
+FROM tp1_bd_voyage.voyage
+WHERE nbetoiles = (
+  SELECT MAX(nbetoiles)
+  FROM tp1_bd_voyage.voyage
+)
+
+-- 12
+SELECT paysarr
+FROM tp1_bd_voyage.voyage
+EXCEPT
+SELECT DISTINCT paysarr
+FROM tp1_bd_voyage.voyage
+WHERE hotel IN (
+  SELECT DISTINCT hotel
+  FROM tp1_bd_voyage.voyage
+  WHERE nbetoiles = (
+    SELECT MAX(nbetoiles)
+    FROM tp1_bd_voyage.voyage
+  )
+)
+
+-- 13
+SELECT paysarr, COUNT(hotel) AS "NB hotel"
+FROM tp1_bd_voyage.voyage
+WHERE paysarr IN (
+  SELECT DISTINCT paysarr
+  FROM tp1_bd_voyage.voyage
+  WHERE nbetoiles = (
+    SELECT MAX(nbetoiles)
+    FROM tp1_bd_voyage.voyage
+  )
+)
+GROUP BY paysarr
