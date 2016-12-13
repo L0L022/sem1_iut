@@ -79,10 +79,29 @@ header {
   transform: translate(-50%, -50%);
   transition: 0.7s ease-out;
   font-family: guardians;
+  text-align: center;
 }
 
 .carre:hover .non-cache {
-  top: 10%;
+  top: 15%;
+}
+
+/* smartphone */
+@media screen and (max-width: 480px) {
+  .non-cache {
+    font-size: 50%;
+  }
+
+  .carre:hover .non-cache {
+    top: 20%;
+  }
+}
+
+/* tablette */
+@media screen and (max-width: 868px) {
+  .non-cache {
+    font-size: 70%;
+  }
 }
 
 .menu {
