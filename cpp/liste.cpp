@@ -12,7 +12,7 @@ struct Liste {
   size_t taille = 0;
 };
 
-struct Liste creerListeVide() {
+Liste creerListeVide() {
   struct Liste liste;
   return liste;
 }
@@ -50,38 +50,45 @@ void enleverAuRang(struct Liste& liste, const size_t rang) {
   --liste.taille;
 }
 
+float& avoirAuRang(struct Liste& liste, const size_t rang) {
+  Maillon *iMaillon = liste.tete;
+  for(size_t i = 0; i < rang; ++i) iMaillon = iMaillon->suivant;
+  return iMaillon->nombre;
+}
+
+void viderListe(struct Liste& liste) {
+  while(!estVide(liste)) enleverAuRang(liste, 0);
+}
+
+struct Liste copierListe(struct Liste& liste) {
+  struct Liste nvListe = creerListeVide();
+  for(Maillon *iMaillon = liste.tete; iMaillon != nullptr; iMaillon = iMaillon->suivant) {
+    ajouterAuRang(nvListe, iMaillon->nombre, cardinalite(nvListe));
+  }
+  return nvListe;
+}
+
 void afficherListe(const struct Liste liste) {
   cout << "taille: " << liste.taille << endl;
   for(Maillon *iMaillon = liste.tete; iMaillon != nullptr; iMaillon = iMaillon->suivant) {
-    cout << iMaillon->nombre << " ";
+    cout << iMaillon->nombre << ",";
   }
   cout << endl << endl;
 }
 
 int main() {
   struct Liste liste = creerListeVide();
+  for (size_t i = 0; i < 20; i++) {
+    ajouterAuRang(liste, i, 0);
+  }
   afficherListe(liste);
-  ajouterAuRang(liste, 1, 0);
+  struct Liste liste_2 = copierListe(liste), liste_3 = liste;
+  avoirAuRang(liste, 5) = 88;
+  ajouterAuRang(liste_2, 99, 0);
+  ajouterAuRang(liste_3, 66, 0);
   afficherListe(liste);
-  ajouterAuRang(liste, 2, 0);
-  ajouterAuRang(liste, 3, 0);
-  ajouterAuRang(liste, 4, 0);
-  ajouterAuRang(liste, 5, 0);
-  ajouterAuRang(liste, 6, 1);
-  ajouterAuRang(liste, 7, 2);
-  ajouterAuRang(liste, 8, 7);
-  afficherListe(liste);
-  enleverAuRang(liste, 0);
-  enleverAuRang(liste, 6);
-  afficherListe(liste);
-  enleverAuRang(liste, 5);
-  enleverAuRang(liste, 4);
-  enleverAuRang(liste, 3);
-  enleverAuRang(liste, 2);
-  enleverAuRang(liste, 1);
-  afficherListe(liste);
-  enleverAuRang(liste, 0);
-  afficherListe(liste);
+  afficherListe(liste_2);
+  afficherListe(liste_3);
 
   return 0;
 }
