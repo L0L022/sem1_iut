@@ -1,20 +1,20 @@
 @font-face {
-  src: url("data/pixel.ttf");
+  src: url("../font/pixel.ttf");
   font-family: pixel;
 }
 
 @font-face {
-  src: url("data/neuropol.ttf");
+  src: url("../font/neuropol.ttf");
   font-family: neuropol;
 }
 
 @font-face {
-  src: url("data/guardians.ttf");
+  src: url("../font/guardians.ttf");
   font-family: guardians;
 }
 
 body {
-  background: url("data/wallpaper.jpg") no-repeat center fixed;
+  background: url("../image/wallpaper.jpg") no-repeat center fixed;
   background-size: cover;
 }
 
@@ -87,6 +87,7 @@ header {
 }
 
 /* smartphone */
+
 @media screen and (max-width: 480px) {
   .non-cache {
     font-size: 50%;
@@ -98,6 +99,7 @@ header {
 }
 
 /* tablette */
+
 @media screen and (max-width: 868px) {
   .non-cache {
     font-size: 70%;

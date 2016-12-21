@@ -4,9 +4,11 @@
 
 * {
   font-family: arial, sans-serif;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(38, 38, 38);
+  text-align: justify;
 }
 
 p {
@@ -18,9 +20,9 @@ p {
   overflow-wrap: break-word;
 }
 
-body {
-  background-color: rgb(38, 38, 38);
-  text-align: justify;
+@font-face {
+  src: url("../font/neuropol.ttf");
+  font-family: neuropol;
 }
 
 /* titres */
@@ -36,19 +38,17 @@ h2 {
 #navigation {
   height: 750px;
   width: 300px;
-  max-width: 300px;
-  background-image: url("data/background.jpg");
+  background-image: url("../image/background.jpg");
   float: left;
-}
-
-#class {
-  float: left;
-  margin: 1em;
-  height: 250px;
+  position: fixed;
 }
 
 #logo {
   position: center;
+}
+
+#logo-mobile {
+  display: none;
 }
 
 #menu {
@@ -57,21 +57,11 @@ h2 {
 }
 
 #footer {
-  color: white;
-  font-size: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: auto;
   padding: 1px;
-  margin-left: 4px;
-  margin-right: 4px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: .;
+  text-align: center;
 }
 
 .logo_youtube {
-  display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50px;
@@ -79,61 +69,70 @@ h2 {
 }
 
 .logo_twitter {
-  display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50px;
   height: 50px;
 }
 
+#menu-accordeon-mobile {
+  display: none;
+}
+
 /* contenu */
 
 #contenu {
   background-color: rgb(255, 255, 255);
-  text-align: center;
-  margin: auto;
   width: 1450px;
-  max-width: 1450px;
-  max-width: 100%;
-  height: auto;
   margin-top: 90px;
   margin-bottom: 90px;
   margin-left: 375px;
-  padding: 1em;
+  padding: 10px;
 }
 
-/* test titre pixellisé */
+.grand-titre {
+  font-family: neuropol, sans-serif;
+  text-align: center;
+  font-size: 50px;
+}
 
 .titre-gauche {
   text-align: left;
-  float: top;
-  margin-right: 1000px;
-  margin-bottom: 15px;
+  font-size: 30px;
 }
-
-/* test titre classique */
 
 .titre-droite {
   text-align: right;
+  font-size: 30px;
+}
+
+.article {
+  padding: 1em;
+  -moz-column-count: 2;
+  -moz-column-gap: 1em;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 1em;
+  column-count: 2;
+  column-gap: 1em;
 }
 
 .image-droite {
   height: 200px;
   width: 300px;
   float: right;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .image-gauche {
   height: 200px;
   width: 300px;
   float: left;
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 /* navigation */
-
-/* partie menu */
 
 #menu {
   position: center;
@@ -146,10 +145,6 @@ h2 {
   list-style: none;
   text-align: center;
   width: 180px;
-}
-
-#menu-accordeon-mobile {
-  display: none;
 }
 
 #menu-accordeon ul {
@@ -207,8 +202,54 @@ h2 {
   max-height: 15em;
 }
 
-#logo-mobile {
+#menu-accordeon-mobile {
   display: none;
+}
+
+/* mosaïque */
+
+.bloc-mosaique li {
+  display: inline-block;
+}
+
+.bloc {
+  width: 330px;
+  height: 300px;
+  background-color: rgb(140, 140, 140);
+  color: white;
+  margin: 5px;
+}
+
+.bloc-image {
+  width: 330px;
+  height: 175px;
+}
+
+.bloc-texte {
+  padding: 5px;
+}
+
+/* formulaire */
+
+label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+}
+
+input {
+  margin: 5px;
+}
+
+input,
+textarea,
+select,
+button {
+  width: 200px;
+  margin: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* responsive design  pour tablette */
@@ -318,6 +359,16 @@ h2 {
     padding: 1em;
     float: left;
   }
+
+  .image-droite {
+    width: 225px;
+    height: 115px;
+  }
+
+  .image-gauche {
+    width: 225px;
+    height: 115px;
+  }
 }
 
 /* responsive design  pour smartphone */
@@ -426,5 +477,15 @@ h2 {
   #logo-mobile {
     text-align: center;
     display: inline;
+  }
+
+  .image-droite {
+    width: 225px;
+    height: 115px;
+  }
+
+  .image-gauche {
+    width: 225px;
+    height: 115px;
   }
 }
