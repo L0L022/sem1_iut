@@ -1,0 +1,5 @@
+executable('ex1', 'ex1.cpp')
+executable('ex2', 'ex2.cpp')
+executable('ex3', 'ex3.cpp')
+executable('ex4', 'ex4.cpp')
+executable('ex5', 'ex5.cpp')
