@@ -1,20 +1,20 @@
 @font-face {
-  src: url(pixel.ttf);
+  src: url("data/pixel.ttf");
   font-family: pixel;
 }
 
 @font-face {
-  src: url(neuropol.ttf);
+  src: url("data/neuropol.ttf");
   font-family: neuropol;
 }
 
 @font-face {
-  src: url(guardians.ttf);
+  src: url("data/guardians.ttf");
   font-family: guardians;
 }
 
 body {
-  background: url("wallpaper.jpg") no-repeat center fixed;
+  background: url("data/wallpaper.jpg") no-repeat center fixed;
   background-size: cover;
 }
 

@@ -37,7 +37,7 @@ h2 {
   height: 750px;
   width: 300px;
   max-width: 300px;
-  background-image: url(background.jpg);
+  background-image: url("data/background.jpg");
   float: left;
 }
 
