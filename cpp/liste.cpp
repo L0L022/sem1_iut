@@ -17,17 +17,14 @@ Liste creerListeVide() {
   return liste;
 }
 
-size_t cardinalite(const struct Liste& liste) {
-  return liste.taille;
-}
+size_t cardinalite(const struct Liste &liste) { return liste.taille; }
 
-bool estVide(const struct Liste& liste) {
-  return liste.taille == 0;
-}
+bool estVide(const struct Liste &liste) { return liste.taille == 0; }
 
-void ajouterAuRang(struct Liste& liste, const float nombre, const size_t rang) {
+void ajouterAuRang(struct Liste &liste, const float nombre, const size_t rang) {
   Maillon **iMaillon = &liste.tete;
-  for(size_t i = 0; i<rang; ++i) iMaillon = &(*iMaillon)->suivant;
+  for (size_t i = 0; i < rang; ++i)
+    iMaillon = &(*iMaillon)->suivant;
 
   Maillon *nvMaillon = new Maillon;
   nvMaillon->nombre = nombre;
@@ -35,14 +32,16 @@ void ajouterAuRang(struct Liste& liste, const float nombre, const size_t rang) {
 
   *iMaillon = nvMaillon;
 
-  if(nvMaillon->suivant == nullptr) liste.queue = *iMaillon;
+  if (nvMaillon->suivant == nullptr)
+    liste.queue = *iMaillon;
 
   ++liste.taille;
 }
 
-void enleverAuRang(struct Liste& liste, const size_t rang) {
+void enleverAuRang(struct Liste &liste, const size_t rang) {
   Maillon **iMaillon = &liste.tete;
-  for(size_t i = 0; i<rang; ++i) iMaillon = &(*iMaillon)->suivant;
+  for (size_t i = 0; i < rang; ++i)
+    iMaillon = &(*iMaillon)->suivant;
 
   Maillon *tmp = *iMaillon;
   *iMaillon = (*iMaillon)->suivant;
@@ -50,19 +49,22 @@ void enleverAuRang(struct Liste& liste, const size_t rang) {
   --liste.taille;
 }
 
-float& avoirAuRang(struct Liste& liste, const size_t rang) {
+float &avoirAuRang(struct Liste &liste, const size_t rang) {
   Maillon *iMaillon = liste.tete;
-  for(size_t i = 0; i < rang; ++i) iMaillon = iMaillon->suivant;
+  for (size_t i = 0; i < rang; ++i)
+    iMaillon = iMaillon->suivant;
   return iMaillon->nombre;
 }
 
-void viderListe(struct Liste& liste) {
-  while(!estVide(liste)) enleverAuRang(liste, 0);
+void viderListe(struct Liste &liste) {
+  while (!estVide(liste))
+    enleverAuRang(liste, 0);
 }
 
-struct Liste copierListe(struct Liste& liste) {
+struct Liste copierListe(struct Liste &liste) {
   struct Liste nvListe = creerListeVide();
-  for(Maillon *iMaillon = liste.tete; iMaillon != nullptr; iMaillon = iMaillon->suivant) {
+  for (Maillon *iMaillon = liste.tete; iMaillon != nullptr;
+       iMaillon = iMaillon->suivant) {
     ajouterAuRang(nvListe, iMaillon->nombre, cardinalite(nvListe));
   }
   return nvListe;
@@ -70,7 +72,8 @@ struct Liste copierListe(struct Liste& liste) {
 
 void afficherListe(const struct Liste liste) {
   cout << "taille: " << liste.taille << endl;
-  for(Maillon *iMaillon = liste.tete; iMaillon != nullptr; iMaillon = iMaillon->suivant) {
+  for (Maillon *iMaillon = liste.tete; iMaillon != nullptr;
+       iMaillon = iMaillon->suivant) {
     cout << iMaillon->nombre << ",";
   }
   cout << endl << endl;
