@@ -294,3 +294,94 @@ WHERE paysarr IN (
   )
 )
 GROUP BY paysarr
+
+-- operations de partitionnement
+
+-- 1
+SELECT paysarr, COUNT(*) AS "Nombre"
+FROM tp1_bd_voyage.voyage
+GROUP BY paysarr
+
+-- 2
+SELECT paysarr, villearr, COUNT(*) AS "Nombre"
+FROM tp1_bd_voyage.voyage
+GROUP BY paysarr, villearr
+
+-- 3
+SELECT paysarr, COUNT(DISTINCT villearr) AS "Nombre"
+FROM tp1_bd_voyage.voyage
+GROUP BY paysarr
+
+-- 4
+SELECT V.idv, villearr, COUNT(datedep) AS "Nombre"
+FROM tp1_bd_voyage.voyage V
+INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
+GROUP BY V.idv, villearr
+
+-- 5
+SELECT V.idv, villearr, COUNT(*) AS "Nombre"
+FROM tp1_bd_voyage.voyage V
+INNER JOIN tp1_bd_voyage.carac C ON V.idv = C.idv
+GROUP BY V.idv, villearr, prix
+HAVING prix IS NULL
+
+-- 6
+SELECT COALESCE(categorie, 'SANS'), COUNT(*) AS "Nombre"
+FROM tp1_bd_voyage.client
+GROUP BY categorie
+
+-- 7
+SELECT V.idv, villearr, COUNT(*) AS "Nb reservations", SUM(nbpers) AS "Nb personnes"
+FROM tp1_bd_voyage.voyage V
+INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
+INNER JOIN tp1_bd_voyage.reservation R ON P.idv = R.idv AND P.datedep = R.datedep
+GROUP BY V.idv, villearr
+
+-- 8
+SELECT V.idv, AVG(prix) AS "Prix moyen"
+FROM tp1_bd_voyage.voyage V
+INNER JOIN (
+  SELECT idv, COALESCE(prix, 0) AS "prix"
+  FROM tp1_bd_voyage.carac
+) C ON V.idv = C.idv
+GROUP BY V.idv
+
+-- 9
+SELECT ville, COUNT(*) AS "Nombre"
+FROM tp1_bd_voyage.client
+GROUP BY ville
+HAVING COUNT(*) > 5
+
+-- 10
+SELECT V.idv, paysarr, SUM(tarif) AS "Montant total"
+FROM tp1_bd_voyage.client C
+INNER JOIN tp1_bd_voyage.reservation R ON C.numcl = R.numcl
+INNER JOIN tp1_bd_voyage.planning P ON R.idv = P.idv AND R.datedep = P.datedep
+INNER JOIN tp1_bd_voyage.voyage V ON P.idv = V.idv
+GROUP BY V.idv, paysarr
+
+-- 11
+SELECT nom, prenom, V.idv, P.datedep, SUM(tarif) AS "Montant total"
+FROM tp1_bd_voyage.client C
+INNER JOIN tp1_bd_voyage.reservation R ON C.numcl = R.numcl
+INNER JOIN tp1_bd_voyage.planning P ON R.idv = P.idv AND R.datedep = P.datedep
+INNER JOIN tp1_bd_voyage.voyage V ON P.idv = V.idv
+GROUP BY nom, prenom, V.idv, P.datedep
+
+-- 12
+SELECT paysarr, COUNT(*) AS "reservations"
+FROM tp1_bd_voyage.reservation R
+INNER JOIN tp1_bd_voyage.planning P ON R.idv = P.idv AND R.datedep = P.datedep
+INNER JOIN tp1_bd_voyage.voyage V ON P.idv = V.idv
+GROUP BY paysarr
+HAVING COUNT(*) > (
+  SELECT COUNT(*)
+  FROM tp1_bd_voyage.reservation R
+  INNER JOIN tp1_bd_voyage.planning P ON R.idv = P.idv AND R.datedep = P.datedep
+  INNER JOIN tp1_bd_voyage.voyage V ON P.idv = V.idv
+  WHERE paysarr = 'ESPAGNE'
+)
+
+-- 13
+SELECT categorie
+FROM tp1_bd_voyage.client
