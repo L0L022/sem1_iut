@@ -383,5 +383,25 @@ HAVING COUNT(*) > (
 )
 
 -- 13
-SELECT categorie
+SELECT categorie, COUNT(*) AS "Nombre"
 FROM tp1_bd_voyage.client
+GROUP BY categorie
+HAVING COUNT(*) <= ALL (
+  SELECT COUNT(*)
+  FROM tp1_bd_voyage.client
+  GROUP BY categorie
+)
+
+-- 14
+SELECT paysarr, COUNT(*) AS "Nombre"
+FROM tp1_bd_voyage.reservation R
+INNER JOIN tp1_bd_voyage.planning P ON R.idv = P.idv AND R.datedep = P.datedep
+INNER JOIN tp1_bd_voyage.voyage V ON P.idv = V.idv
+GROUP BY paysarr
+HAVING COUNT(*) >= ALL (
+  SELECT COUNT(*)
+  FROM tp1_bd_voyage.reservation R
+  INNER JOIN tp1_bd_voyage.planning P ON R.idv = P.idv AND R.datedep = P.datedep
+  INNER JOIN tp1_bd_voyage.voyage V ON P.idv = V.idv
+  GROUP BY paysarr, V.idv, P.datedep
+)
