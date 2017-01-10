@@ -1,41 +1,43 @@
-function A = echange_ligne(A, y_1, y_2)
-    [y_max, x_max] = size(A)
-    for x = 1 : x_max
-        tmp=A(y_1, x)
-        A(y_1, x)=A(y_2, x)
-        A(y_2, x)=tmp
+function A = echange_ligne(A, ligne_1, ligne_2)
+    [ligne_max, colonne_max] = size(A)
+    for colonne = 1 : colonne_max
+        tmp = A(ligne_1, colonne)
+        A(ligne_1, colonne) = A(ligne_2, colonne)
+        A(ligne_2, colonne) = tmp
     end
 endfunction
 
-function A = transvection(A, y_dest, y_src, coef)
-    [y_max, x_max] = size(A)
-    for x = 1 : x_max
-        A(y_dest, x)=A(y_dest, x)+coef*A(y_src, x)
+function A = transvection(A, ligne_dest, ligne_src, coef)
+    [ligne_max, colonne_max] = size(A)
+    for colonne = 1 : colonne_max
+        A(ligne_dest, colonne) = A(ligne_dest, colonne) + coef * A(ligne_src, colonne)
     end
 endfunction
 
-function p = pivot(A, debut)
-    p = debut
-    p_valeur = abs(A(debut, debut))
-    [y_max, x_max] = size(A)
-    for y = debut : y_max
-        if abs(A(y, debut)) > p_valeur then
-            p = y
-            p_valeur = abs(A(y, debut))
+function pivot_ligne = pivot(A, debut)
+    pivot_ligne = debut
+    pivot_valeur = abs(A(debut, debut))
+    [ligne_max, colonne_max] = size(A)
+    for ligne = debut : ligne_max
+        if abs(A(ligne, debut)) > pivot_valeur then
+            pivot_ligne = ligne
+            pivot_valeur = abs(A(ligne, debut))
         end
     end
 endfunction
 
 function [A, B] = gauss(A, B)
-    [y_max, x_max] = size(A)
-    for i_diagonale = 1 : x_max
-        p = pivot(A, i_diagonale)
-        A = echange_ligne(A, i_diagonale, p)
-        for i_y = i_diagonale + 1 : y_max
-            //for i_x = 1 : x_max
-              // A(i_y, i_x) = A(i_y, i_x)-(A(i_y,i_diagonale)/A(p,p))*A(i_diagonale, i_x)
-            //end
-            A = transvection(A, i_y, i_diagonale, -A(i_y,i_diagonale)/A(p,p))
+    [ligne_max, colonne_max] = size(A)
+    diagonale_max = ligne_max
+    for i_diagonale = 1 : diagonale_max
+        pivot_ligne = pivot(A, i_diagonale)
+        pivot_valeur = A(pivot_ligne, i_diagonale)
+        A = echange_ligne(A, i_diagonale, pivot_ligne)
+        B = echange_ligne(B, i_diagonale, pivot_ligne)
+        for i_ligne = i_diagonale + 1 : diagonale_max
+            coef = - A(i_ligne, i_diagonale) / pivot_valeur
+            A = transvection(A, i_ligne, i_diagonale, coef)
+            B = transvection(B, i_ligne, i_diagonale, coef)
         end
     end
 endfunction
