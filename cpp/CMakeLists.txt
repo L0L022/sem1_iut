@@ -1,5 +1,6 @@
 add_executable(chaine chaine.cpp)
 add_executable(hello hello.cpp)
 add_executable(liste liste.cpp)
+add_executable(tri_personne tri_personne.cpp)
 
 add_subdirectory(eval1)
