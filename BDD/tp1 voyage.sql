@@ -104,17 +104,24 @@ WHERE adresse IS NULL
 -- sous requetes et operateurs ensemblistes
 
 -- 1
-SELECT V.idv, villearr
+SELECT DISTINCT V.idv, villearr, paysarr
 FROM tp1_bd_voyage.voyage V
 INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
 WHERE tarif = (
   SELECT MIN(tarif)
   FROM tp1_bd_voyage.planning
 )
--- ou
+--
+SELECT DISTINCT voyage.idv, villearr, paysarr
+FROM tp1_bd_voyage.voyage
+JOIN tp1_bd_voyage.planning ON voyage.idv = planning.idv
+WHERE tarif <= ALL (
+  SELECT tarif
+  FROM tp1_bd_voyage.planning
+)
 
 -- 2
-SELECT villearr, tarif
+SELECT villearr, paysarr
 FROM tp1_bd_voyage.voyage V
 INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
 GROUP BY V.idv, villearr, tarif
@@ -122,6 +129,14 @@ HAVING tarif >= ALL(
   SELECT tarif
   FROM tp1_bd_voyage.voyage V
   INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
+)
+-- ou
+SELECT DISTINCT villearr, paysarr
+FROM tp1_bd_voyage.voyage V
+INNER JOIN tp1_bd_voyage.planning P ON V.idv = P.idv
+WHERE tarif = (
+  SELECT MAX(tarif)
+  FROM tp1_bd_voyage.planning
 )
 
 -- 3
