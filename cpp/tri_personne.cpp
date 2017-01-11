@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -65,13 +66,17 @@ int RechercheDich(const Personne *personnes, const string &num) {
   return -1;
 }
 
+//$ for i in {1..255}; do echo $RANDOM$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM | head -c 10 >> num.txt; echo >> num.txt; done && sort num.txt -o num.txt
+
 int main() {
   Personne *personnes = new Personne[personnes_max];
-  for (size_t i = 0; i < personnes_max; i++) {
-    personnes[i].num = to_string(i);
-  }
-  personnes[personnes_max-1].num = "666";
-  cout << RechercheDich(personnes, "10") << endl;
+  std::ifstream nums("num.txt");
+  for (size_t i = 0; i < personnes_max; i++)
+    getline(nums, personnes[i].num);
+  cout << RechercheDich(personnes, "1001419684") << endl; //premier
+  cout << RechercheDich(personnes, "9351107193") << endl; //dernier
+  cout << RechercheDich(personnes, "1700716727") << endl; //56
+  cout << RechercheDich(personnes, "3280177401") << endl; //194
   delete[] personnes;
   return 0;
 }
