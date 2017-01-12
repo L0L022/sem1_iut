@@ -4,5 +4,6 @@ add_executable(liste liste.cpp)
 add_executable(tri_personne tri_personne.cpp)
 add_executable(selection_simple selection_simple.cpp)
 add_executable(tri_bulle tri_bulle.cpp)
+add_executable(tri_insertion tri_insertion.cpp)
 
 add_subdirectory(eval1)
