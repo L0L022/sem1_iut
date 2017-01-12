@@ -50,7 +50,6 @@ int RechercheDich(const Personne *personnes, const string &num) {
   while(min <= max) {
     i = ((max + min) - (max + min)%2)/2;
     cout << min << " < " << i << " < " << max << endl;
-    cout << personnes[i].num << " " << num << " " << CompareTo(personnes[i].num, num) << endl;
     switch (CompareTo(personnes[i].num, num)) {
       case -1:
         min = i + 1;
@@ -77,6 +76,7 @@ int main() {
   cout << RechercheDich(personnes, "9351107193") << endl; //dernier
   cout << RechercheDich(personnes, "1700716727") << endl; //56
   cout << RechercheDich(personnes, "3280177401") << endl; //194
+  cout << RechercheDich(personnes, "4564567894") << endl; //existe pas
   delete[] personnes;
   return 0;
 }
