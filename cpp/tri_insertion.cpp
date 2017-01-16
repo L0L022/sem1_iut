@@ -24,8 +24,8 @@ void affiche(size_t *tab) {
 
 void tri(size_t *tab) {
   for (size_t i = 1; i < taille_max; ++i) {
-    for (size_t j = i; j >= 0; --j) {
-
+    for(size_t j = i; tab[j-1] > tab[j] and j > 0; --j) {
+      swap(tab[j-1], tab[j]);
     }
   }
 }
