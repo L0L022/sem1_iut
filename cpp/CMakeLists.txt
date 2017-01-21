@@ -5,6 +5,7 @@ add_executable(tri_personne tri_personne.cpp)
 add_executable(selection_simple selection_simple.cpp)
 add_executable(tri_bulle tri_bulle.cpp)
 add_executable(tri_insertion tri_insertion.cpp)
+add_executable(tri_rapide tri_rapide.cpp)
 add_executable(bit_signe bit_signe.cpp)
 
 add_subdirectory(eval1)

@@ -22,11 +22,18 @@ void affiche(size_t *tab) {
   cout << endl;
 }
 
-void tri(size_t *tab) {
-  for (size_t i = 1; i < taille_max; ++i) {
-    for(size_t j = i; tab[j-1] > tab[j] and j > 0; --j) {
-      swap(tab[j-1], tab[j]);
+void tri(size_t *tab, const size_t debut = 0, const size_t fin = taille_max-1) {
+  if(debut < fin) {
+    size_t pivot = fin;
+    for(size_t i = debut; i < fin; ++i) {
+      if(tab[i] > tab[pivot]) {
+        swap(tab[i], tab[pivot-1]);
+        swap(tab[pivot-1], tab[pivot]);
+        ++pivot;
+      }
     }
+    tri(tab, debut, pivot - 1);
+    tri(tab, pivot + 1, fin);
   }
 }
 

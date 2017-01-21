@@ -19,8 +19,7 @@ size_t longueurMot(const char *mot) {
 
 bool Equal(const char *ch1, const char *ch2) {
   bool pareil = longueurMot(ch1) == longueurMot(ch2);
-  size_t i = 0;
-  for(; pareil and ch1[i] != '\0'; ++i)
+  for(size_t i = 0; pareil and ch1[i] != '\0'; ++i)
     pareil = ch1[i] == ch2[i];
   return pareil;
 }
